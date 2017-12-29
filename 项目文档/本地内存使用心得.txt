@@ -1,0 +1,30 @@
+               try
+               {
+                    StudySection StudySectione_Add = new StudySection()
+                    {
+                        Academic = Academic,
+                        Semester = Semester,
+                        StartTime = StartTime,
+                        EndTime = EndTime,
+
+                        CreateTime = DateTime.Now,
+                        CreateUID = CreateUID,
+                        EditTime = DateTime.Now,
+                        EditUID = EditUID,
+                        IsEnable = (int)IsEnable.Enable,
+                        DisPlayName = StudyDisPlayName,
+                        IsDelete = (int)IsDelete.No_Delete
+                    };
+                    //数据库添加
+                    jsonModel = new FEBLL.StudySectionService().Add(StudySectione_Add);
+                    //从数据库返回的ID绑定
+                    StudySectione_Add.Id = RequestHelper.int_transfer(Convert.ToString(jsonModel.retData));
+                    if (jsonModel.errNum == intSuccess && !Constant.StudySection_List.Contains(StudySectione_Add))
+                    {
+                        //缓存添加
+                        Constant.StudySection_List.Add(StudySectione_Add);
+                    }
+                }
+
+
+w3wp 清楚之后，会发现加载出现两条数据的现象，因此，需要先进行数据的预加载。  直接调用 constant.list  进行预加载

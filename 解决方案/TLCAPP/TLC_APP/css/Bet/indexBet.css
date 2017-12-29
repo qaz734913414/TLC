@@ -1,0 +1,139 @@
+﻿a:hover {
+    text-decoration: none;
+}
+
+.betSubmitBg {
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(red), to(#5F0C0C));
+    text-align: center;
+    font-size: 18px;
+}
+
+.betResetBg {
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#E8C235), to(#EF6F25));
+    text-align: center;
+    font-size: 18px;
+}
+
+.col333 {
+    font-weight: bold;
+}
+
+.textConter {
+    text-align: center;
+    cursor:pointer;
+}
+
+.showMsg .msgdiv {
+    margin: 10px 0 0 0;
+}
+
+.msg-btn-bottom-bet {
+    width: 55%;
+    line-height: 36px;
+    margin: 10px 0px 10px 0px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #424242;
+    background: #9C0505;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.betConfirm-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.betConfirm-btn-submit {
+    background: #2789ba;
+    color: white;
+}
+
+.betConfirm-btn-default {
+    background: #9C0505;
+    color: white;
+}
+
+.colW {
+    color: white;
+}
+
+.colY {
+    color: yellow;
+}
+
+.colC {
+    color: #ccc;
+}
+
+.colR {
+    color: red;
+}
+
+.colB {
+    color: #6B6BEF;
+}
+
+.colG {
+    color: #3CB73C;
+}
+
+.col333 {
+    color: #333;
+}
+
+.bcolB {
+    background: #6B6BEF;
+}
+
+.bcolG {
+    background: #3CB73C;
+}
+
+.bcolR {
+    background: #EC2B2B;
+}
+
+.bcolH {
+    background: #803214;
+}
+
+.bcolBl {
+    background: black;
+}
+
+.bcol999 {
+    background: #999;
+}
+
+.bcolW {
+    background: white;
+}
+
+.bcolYe {
+    background: #DDC04D;
+}
+
+.rightMenuD {
+    margin: 0;
+    display: inline;
+    padding: 8px;
+    border-right: 1px solid #ddd;
+    float: left;
+    background-color: darkgray;
+}
+
+.currnRMenu {
+    background-color: burlywood;
+}
+
+.surr {
+    box-shadow: 0 1px 9px #333 inset;
+}
+
+/*行选中*/
+.betRowUnit {
+    background: rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px #5D5D5D inset;
+}

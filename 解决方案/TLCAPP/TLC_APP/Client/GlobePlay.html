@@ -1,0 +1,156 @@
+﻿
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>赔率设置</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <!--<link href="/css/animate.css" rel="stylesheet" />-->
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <link href="../css/lg/style.css" rel="stylesheet" />
+    <link href="../css/lg/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <link href="../css/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedCheck.js"></script>
+
+    <script src="../js/webcenter/globe_client.js"></script>
+    <script src="../js/web/Client/GlobePlay.js"></script>
+
+    <style>
+        .divcss5 {
+            border-style: ridge;
+            /*border-width: 1px;*/
+            border-color: green;
+            border-bottom-width: 0.5px;
+            /*border-top-width: 0.5px;*/
+            display: none;
+            height: 35px;
+        }
+
+        .pay_return {
+            width: 25%;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .td_select {
+            background: lightblue;
+        }
+
+        .form-control {
+            margin-top: 22px;
+        }
+
+        .choseBallWrap {
+            margin-bottom: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div_Top" class="select_tools fl clearfix" style="margin-top:15px">
+    </div>
+    <div class="choseBallWrap scroll">
+        <table class="table table-bordered LotteryBall">
+
+            <tbody id="body1"></tbody>
+        </table>
+
+        <table class="table table-bordered lotteryOdds">
+            <tbody id="body2"></tbody>
+        </table>
+    </div>
+
+    <div class="bottom-bet row" id="SingleBet" style="display: block;">
+        <div class="col-xs-6">
+            <input type="text" class="form-control" type="number" onkeydown="return OnlyNumLimit(event);" step="1" min="0" id="singleMoney" name="singleMoney" placeholder="输入金额">
+        </div>
+        <div class="col-xs-6">
+            <a class="btn-bottom-bet">下注</a>
+            <a class="btn-bottom-reset">重置</a>
+        </div>
+    </div>
+</body>
+
+
+</html>
+
+<script type="text/x-jquery-tmpl" id="globeItem">
+    <td class="textConter">
+        <a class="hrefclass">
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            <label code="${Code}" class="pay_return">${PayReturn}</label>
+        </a>
+    </td>
+</script>
+
+<script type="text/x-jquery-tmpl" id="sizeItem">
+    <td class="chosenCenter textConter">
+        <a class="hrefclass">
+            <p class="col333">
+                ${Name}
+            </p>
+            <h6>
+                <label code="${Code}" class="pay_return">${PayReturn}</label>
+            </h6>
+        </a>
+    </td>
+</script>
+
+<script type="text/x-jquery-tmpl" id="waveItem">
+
+    <tr>
+        <td class="textConter">
+            <a href="#this">
+                <p class="col333">
+                    <span class="betNameSpan">${Name}</span>
+                    <label code="${Code}" class="pay_return">${PayReturn}</label>
+                </p>
+            </a>
+        </td>
+        <td part="line_part">
+            {{each GlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+        </td>
+    </tr>
+</script>
+
+<script type="text/x-jquery-tmpl" id="detailItem">
+    <td class="textConter">
+        <a href="#this">
+            <p class="col333">
+                ${Name}
+                <label code="${Code}" class="pay_return">${PayReturn}</label>
+            </p>
+        </a>
+    </td>
+</script>
+
+<script type="text/x-jquery-tmpl" id="topItem">
+    <a href="javascript:;" code="${Code}">${Second_Name}</a>
+</script>

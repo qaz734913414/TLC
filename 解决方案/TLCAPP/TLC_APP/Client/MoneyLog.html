@@ -1,0 +1,106 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>加币\减币</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <!--<link href="/css/animate.css" rel="stylesheet" />-->
+
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/Common/PageBar.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedAdminCheck.js"></script>
+    <script src="../js/webcenter/operation.js"></script>
+    <script src="../js/webcenter/userinfo.js"></script>
+    <script src="../js/webcenter/globe_client.js"></script>
+    <script src="../js/web/Client/MoneyLog.js"></script>
+
+
+    <style>
+        .Sear .hu {
+            height: 28px;
+            width: 100px;
+        }
+
+        #user_M {
+            margin: 6px 25px 0 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #money_M {
+            margin: 6px 25px 0 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1">
+        <div class="Teaching_plan_management">
+            <div class="left_choice fl" style="margin-bottom:10px">
+                <ul>
+                    <li class="Sear" id="user_M">当前用户：XX</li>
+                    <li class="Sear" id="money_M">当前余额：0</li>
+                </ul>
+            </div>
+
+            <div class="left_choice fr" style="margin-bottom:10px">
+                <ul>
+                    <!--<li style="margin-top:6px"><span class="m">充值金额：</span></li>
+                    <li style="margin-top:3px"> <input id="chargeMoney" style="width: 100px" onkeydown="return OnlyNumLimit(event);" type="number" step="1" min="0" placeholder="请输入充值金额" value="0" /></li>-->
+                    <li style="margin-top:5px"><input type="button" class="Save_and_submit" value="充值" /></li>
+                    <li style="margin-top:5px"><input type="button" class="Cash_and_submit" value="提现" /></li>
+                </ul>
+            </div>
+            <div class="Honor_management">
+
+                <table class="W_form">
+                    <thead>
+                        <tr class="trth">
+                            <th class="number">序号</th>
+                            <th>内容</th>
+                            <th>加币</th>
+                            <th>减币</th>
+                            <th>操作时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_MoneyList"></tbody>
+                </table>
+            </div>
+            <!--分页页码开始-->
+            <div class="paging">
+                <span id="pageBar"></span>
+            </div>
+            <!--分页页码结束-->
+        </div>
+
+    </form>
+</body>
+</html>
+<script id="tr_Money" type="text/x-jquery-tmpl">
+    <tr>
+        <td>${pageIndex()}</td>
+        <td>${O_Content}</td>
+
+        {{if Type ==0}}
+        <td>${O_Money}</td>
+        <td></td>
+        {{else}}
+        <td></td>
+        <td>${O_Money}</td>
+        {{/if}}
+
+        <td>${DateTimeConvert(CreateTime)}</td>
+    </tr>
+</script>

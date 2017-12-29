@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,inital-scale=1.0,minimum-scale=0.5,maximum-scale=2.0,user-scalable=no">
+    <title>透乐彩模拟器</title>
+    <link type="text/css" rel="stylesheet" href="../css/common.css" />
+    <link type="text/css" rel="stylesheet" href="../css/style.css" />
+    <link type="text/css" rel="stylesheet" href="../css/iconfont.css" />
+    <link type="text/css" rel="stylesheet" href="../css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="../css/sprite.css" />
+    <link rel="stylesheet" href="../js/layer/skin/layer.css" id="layui_layer_skinlayercss" />
+    <link href="../css/lg/style.css" rel="stylesheet" />
+
+
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/layer/layer.js"></script>
+
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedCheck.js"></script>
+    <script src="../js/webcenter/globe_client.js"></script>
+    <script src="../js/web/Moblie/IndexClient.js"></script>
+
+    <style>
+        .next-result a {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .next-result {
+            color: white;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .fenpanspan {
+            color: red;
+        }
+
+        .lbl_section {
+            font-size: 16px;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .bottom-bet1 {
+            float: left;
+            vertical-align: central;
+            color: white;
+            margin-left: 30px;
+            margin-top: 3px;
+        }
+
+        .login {
+            padding-right: 30px;
+        }
+
+        .menubox {
+            width: 140px;
+        }
+
+        .topcon {
+            height: 100px;
+        }
+
+
+        .select_tools a {
+            padding: 22px 10px;
+            margin-right: 10px;
+            width: 27%;
+            height: 70px;
+            text-align: center;
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+        .select_tools a span{
+           text-align:center;
+           vertical-align:middle;
+        }
+    </style>
+</head>
+<body>
+    <!--头部-->
+    <div class="top ms-dialogHidden">
+        <div class="topcon">
+            <div class="top_con">
+                <div>
+                    <div class="next-result" id="awardCurrent">
+                        <span>
+                            期号
+                        </span>
+
+                        <a>XXX</a>
+                        已封盘
+                    </div>
+                    <div class="next-result" id="awardLast" style="margin-top:17px">
+                    </div>
+
+                    <div class="next-result">
+                        <span id="current_money">目前余额：0</span>
+                    </div>
+                </div>
+                <div class="top_right" style="position:fixed;top:82px;right:-20px">
+                    <!--photo email-->
+                    <div class="rightcontent fl">
+                        <div class="login fl" id="setting" style="position: relative; cursor: pointer;">
+                            <a href="#"><span id="sp_LoginName" name="sp_LoginName">游客</span><b class="jiantou" style="font-weight: bold; font-size: 12px;">▼</b></a>
+
+                        </div>
+                    </div>
+                    <script src="../js/web/Index/indexlogin.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="div_Top" class="select_tools" style="margin-top:50px">
+        <a href="GlobePlay.html?Type=1" code="1" class=""><span>特码</span></a>
+        <a href="GlobePlay.html?Type=2" code="1" class=""><span>正码</span></a>
+        <a href="GlobePlay.html?Type=3" code="2" class=""><span>正码特</span></a>
+        <a href="GlobePlay.html?Type=4" code="2" class=""><span>正码1-6</span></a>
+
+        <a href="GlobePlay.html?Type=5" code="1" class=""><span>连码</span></a>
+        <a href="GlobePlay.html?Type=6" code="2" class=""><span>特码半波</span></a>
+        <a href="GlobePlay.html?Type=7" code="2" class=""><span>一肖/尾数</span></a>
+
+        <a href="GlobePlay.html?Type=8" code="1" class=""><span>特码生肖</span></a>
+        <a href="GlobePlay.html?Type=9" code="1" class=""><span>合肖</span></a>
+        <a href="GlobePlay.html?Type=10" code="1" class=""><span>连肖</span></a>
+
+        <a href="GlobePlay.html?Type=11" code="1" class=""><span>尾数连</span></a>
+        <a href="GlobePlay.html?Type=12" code="1" class=""><span>全不中</span></a>     
+    </div>
+
+</body>
+</html>
+
+
+<script type="text/x-jquery-tmpl" id="awarLastItem">
+    <label class="lbl_section">${Year}${Name}期</label>
+
+    {{each GlobeList}}
+    {{if Color =='red'}}
+    <p class="ball-red">${Name}</p>
+    {{else Color =='blue' }}
+    <p class="ball-blue">${Name}</p>
+    {{else Color =='green'}}
+    <p class="ball-green">${Name}</p>
+    {{/if}}
+    {{/each}}
+
+
+</script>
+
+<script type="text/x-jquery-tmpl" id="awardCurrentItem">
+    <span>
+        当前期号:
+    </span>
+
+    <a>${Name}</a>
+    距离封盘:
+    <a><span id="ddspan">${Leave_Day}</span> 天 <span id="hhspan">${Leave_Hour}</span> 时 <span id="MMspan">${Leave_Minuite}</span> 分 <span id="ssspan">${Leave_Second}</span> 秒</a>
+</script>
+
+<script type="text/x-jquery-tmpl" id="settingItem">
+    <div class="login_none" style="position: absolute; top: 180%; right: 10px; width: 90px; border: 1px solid rgb(204, 204, 204); background: rgb(255, 255, 255); z-index: 999; height: 93px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px; display: none;">     
+        <a href="HistoryAwardList.html" style="line-height: 30px; text-align: center; display: block; width: 100%; height: 30px; color: #666;">开奖记录</a>
+        <a href="SelfPrizeList.html" style="line-height: 30px; text-align: center; display: block; width: 100%; height: 30px; color: #666;">下注记录</a>
+        <a id="logout" style="line-height: 30px; text-align: center; display: block; width: 100%; height: 30px; color: #666;">退出</a>
+    </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="loginItem">
+    <div class="login_none" style="position: absolute; top: 180%; right: 10px; width: 90px; border: 1px solid rgb(204, 204, 204); background: rgb(255, 255, 255); z-index: 999; height: 31px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px; display: none;">
+        <a  id="login" style="line-height: 30px; text-align: center; display: block; width: 100%; height: 30px; color: #666;">登录</a>
+    </div>
+</script>

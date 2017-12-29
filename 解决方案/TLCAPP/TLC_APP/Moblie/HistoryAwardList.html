@@ -1,0 +1,174 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,inital-scale=1.0,minimum-scale=0.5,maximum-scale=2.0,user-scalable=no">
+    <title>下注记录</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" /> 
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <link href="../css/lg/style.css" rel="stylesheet" />
+    <link href="../css/lg/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/Common/jquery-barcode.js"></script>
+    <script src="../js/Common/PageBar.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedCheck.js"></script>
+    <script src="../js/webcenter/award.js"></script>
+    <script src="../js/webcenter/globe_client.js"></script>
+    <script src="../js/web/Client/HistoryAwardList.js"></script>
+    <style>
+        .tdCurrent {
+            font-size: 14Px;
+            font-weight: bold;
+        }
+
+        .btnLeft {
+            position: fixed;
+            right: 10px;
+            width: 140px;
+            top: 37px;
+        }
+
+        .Teaching_plan_management {
+           padding:inherit;
+        }
+        .left_choice ul li {
+            float: left;
+            margin-right: auto;
+            color: #666;
+            margin-left: 5px;
+        }
+        .select_tools a {
+            font-size: 13px;
+            color: #333;
+            padding: 6px 5px;
+            display: block;
+            float: left;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            margin-right: 10px;
+            border: 0.3px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="select_tools fl clearfix" style="width:100%;margin-top:0;margin-bottom:15px">
+        <a href="/Moblie/IndexClient.html" style="min-width: 0%; margin-bottom: 0px; "><img src="../images/return.png" style="height: 15px; vertical-align: middle;" /><span style="vertical-align: middle;">首页</span></a>
+    </div>
+    <div class="Teaching_plan_management">
+
+        <h1 class="Page_name" style=" margin: 0px 0 0 5px;">历史奖项</h1>
+        <div class="Operation_area">
+            <div class="left_choice fl">
+                <ul>
+                    <li class="Sear">
+                        <input type="text" id="search_w" name="search_w" class="search_w" placeholder="请输入期号" value="" /><a class="sea" href="#" onclick="SelectWhere();" style="margin-left: 10px;">搜索</a>
+                    </li>
+                </ul>
+            </div>         
+        </div>
+
+        <div class="Honor_management">
+
+            <table class="W_form">
+                <thead>
+                    <tr class="trth">
+                        <!--<th >序号</th>-->
+                        <th>年号</th>
+                        <th>期号</th>                       
+                        <th>封盘</th>                       
+                        <th >球号</th>
+                        <th>状态</th>                      
+                    </tr>
+                </thead>
+                <tbody id="tb_AwardList"></tbody>
+            </table>
+        </div>
+        <!--分页页码开始-->
+        <div class="paging">
+            <span id="pageBar"></span>
+        </div>
+        <!--分页页码结束-->
+    </div>
+
+
+
+</body>
+</html>
+
+<script type="text/x-jquery-tmpl" id="award_Item">
+    <tr>
+        <td>${Year}</td>
+        <td>${Name}</td>
+        <td>${DateTimeConvert(CloseTime,'yyyy-MM-dd HH:mm:ss')}</td>
+
+        {{if IsCompleate ==0}}
+        <td>
+            {{each GlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+        </td>
+        {{else}}
+        <td></td>
+        {{/if}}
+
+        
+
+        {{if IsCompleate ==0}}
+        <td style="color:green">已开奖</td>
+        {{else}}
+        <td style="color:red">未开奖</td>
+        {{/if}}
+
+    </tr>
+</script>
+
+<script type="text/x-jquery-tmpl" id="awardCurrent_Item">
+    <tr>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;"><h1 class="Page_name">当期奖项</h1></td>
+
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">年号：${Year}</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">期号：${Name}</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">开始时间：${DateTimeConvert(StartTime,'yyyy-MM-dd HH:mm:ss')}</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">封盘时间：${DateTimeConvert(CloseTime,'yyyy-MM-dd HH:mm:ss')}</td>
+
+        {{if IsCompleate ==0}}
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">
+            开奖球号：
+            {{each GlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+        </td>
+        {{else}}
+        <td>开奖球号：XXXXXXX</td>
+        {{/if}}
+      
+    </tr>
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="NoListItem">     
+    <td colspan="100" style="border-bottom:none;"><div style="width:100%;background:url(/images/nomessage.png) no-repeat center center;height:480px;background-size:15% auto;"></div></td>
+</script>
+

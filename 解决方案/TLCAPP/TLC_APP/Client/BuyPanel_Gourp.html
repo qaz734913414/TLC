@@ -1,0 +1,114 @@
+﻿
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+
+
+
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedCheck.js"></script>
+    <script src="../js/webcenter/globe_client.js"></script>
+
+    <script src="../js/web/Client/BuyPanel_Gourp.js"></script>
+    <style>
+        .list-account {
+            margin-bottom: 50px;
+        }
+
+        .bottom-bet1 {
+            width: 100%;
+            position: fixed;
+            background: white;
+            top: 0;
+            height: 30px;
+            display: block;
+            margin: 0;
+            z-index: 999;
+        }
+
+        .bottom-bet2 {
+            width: 100%;
+            position: fixed;
+            background: white;
+            top: 30px;
+            height: 40px;
+            display: block;
+            margin: 0;
+            z-index: 999;
+        }
+
+        .bottom-bet3 {
+            width: 100%;
+            position: fixed;
+            background: white;
+            bottom: 5px;
+            height: 40px;
+            display: block;
+            margin: 0;
+            z-index: 999;
+        }
+
+        .W_form {
+            margin-top: 35px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bottom-bet1">
+        <h5 id="current_money" class="betConfirm-title">目前余额：0</h5>
+    </div>
+
+    <table class="W_form">
+        <thead>
+            <tr class="trth">
+                <th style="width: 33%">号码</th>
+                <th style="width: 33%">费率</th>
+                <th style="width: 33%">金额</th>
+            </tr>
+        </thead>
+        <tbody id="tb_buylist"></tbody>
+    </table>
+
+    <ul style="margin-bottom: 125px">
+        <li class="list-group-item li-account li-betConfirm">
+            <h5 style="float:right; margin-left: 2px">可赢金额：<span style="color: red;" id="total_get">?</span></h5>
+            <h5 style="float:right;margin-left: 2px;">下注总金额：<span style="color: red;" id="total">?</span></h5>
+        </li>
+    </ul>
+    <div class="bottom-bet3" id="SingleBet">
+        <li class="list-group-item li-account li-betConfirm"><a class="btn betConfirm-btn-submit" href="#this" onclick="subBet()">确定</a><a class="btn betConfirm-btn-default pull-right" href="#this" onclick="hideConfirm()">取消</a></li>
+    </div>
+</body>
+</html>
+
+
+<script id="buy_Item" type="text/x-jquery-tmpl">
+    <tr>
+        <td style="width: 33%">${Name}</td>
+        <td style="width: 33%">@@${PayReturn}</td>
+        <td style="width: 33%"></td>
+    </tr>
+</script>
+
+
+<script id="buy_Item_Space" type="text/x-jquery-tmpl">
+    <tr style="border-bottom-width: 1px;border-bottom-color:black">
+        <td style="border-right: 0 solid #eee;width: 33%; color: red">${Name}</td>
+        <td style="border-right: 0 solid #eee;width: 33%; color: red">@@${PayReturn}</td>
+        <td style="border-right: 0 solid #eee;width: 33%; color: red ">${singleMoney}</td>
+    </tr>
+</script>

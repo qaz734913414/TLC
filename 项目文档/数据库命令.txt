@@ -1,0 +1,29 @@
+update Operation_Record set Araw_ReturnMoney =0,Get_Money =0,Return_Money =0,IsWin =3,Araw_RetrunContent =''
+
+truncate table [dbo].[MoneyLog]
+truncate table Award_Public
+truncate table Operation_Record
+
+
+update Award_Public set IsCompleate =1,CloseTime = '2017.11.11'
+
+drop table [dbo].[Globe_Clue]
+drop table [dbo].[MoneyLog]
+drop table [dbo].[Operation_Record]
+drop table [dbo].[Size_Six]
+drop table [dbo].[Size_Special]
+drop table [dbo].[Size_SpecialNormal]
+drop table [dbo].[Size_Sum]
+drop table [dbo].[UserInfo]
+drop table [dbo].[Wave]
+
+drop table [dbo].[Animal_Info]
+drop table [dbo].[Award_Public]
+drop table [dbo].[Detail]
+drop table [dbo].[Globe]
+
+
+
+update Size_Six set IsEnable =2 where Name like '%²¨%'
+update [dbo].[Size_Special] set IsEnable =2 where Name like '%²¨%'
+update [dbo].[Size_SpecialNormal] set IsEnable =2 where Name like '%²¨%'

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E57DA07D-0040-46D3-B744-85D887119D93}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TLC_Handler</RootNamespace>
+    <AssemblyName>TLC_Handler</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DDHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\DDHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b9a188c8922137c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\Admin_Setting.ashx.cs">
+      <DependentUpon>Admin_Setting.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin.ashx.cs">
+      <DependentUpon>Admin.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin_Award.ashx.cs">
+      <DependentUpon>Admin_Award.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin_Login.ashx.cs">
+      <DependentUpon>Admin_Login.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin_UserInfo.ashx.cs">
+      <DependentUpon>Admin_UserInfo.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\OperationManage.ashx.cs">
+      <DependentUpon>OperationManage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ConverList.cs" />
+    <Compile Include="Constant.cs" />
+    <Compile Include="Globe_Manage\Globe_Manage.ashx.cs">
+      <DependentUpon>Globe_Manage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Admin.ashx" />
+    <Content Include="Admin\Admin_Login.ashx" />
+    <Content Include="Admin\Admin_UserInfo.ashx" />
+    <Content Include="Client\OperationManage.ashx" />
+    <Content Include="Globe_Manage\Globe_Manage.ashx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\DDHelper.dll" />
+    <Content Include="DLL\log4net.dll" />
+    <Content Include="DLL\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Admin_Award.ashx" />
+    <Content Include="Admin\Admin_Setting.ashx" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TLC_BLL\TLC_BLL.csproj">
+      <Project>{eed7e622-a6b2-43f6-852a-0d4b47c4e74d}</Project>
+      <Name>TLC_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_DAL\TLC_DAL.csproj">
+      <Project>{4453a441-488d-4380-9b09-9bae683e7524}</Project>
+      <Name>TLC_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_CombineAnimal\TLC_Globe_CombineAnimal.csproj">
+      <Project>{6484c8e4-3c54-40ff-ba75-c9242a2c4ead}</Project>
+      <Name>TLC_Globe_CombineAnimal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_LineAnimal\TLC_Globe_LineAnimal.csproj">
+      <Project>{9b0f6042-0cc7-4389-9a27-96541c038092}</Project>
+      <Name>TLC_Globe_LineAnimal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_LineDetail\TLC_Globe_LineDetail.csproj">
+      <Project>{939ec110-fd5d-44b8-bf44-4f27c90c7514}</Project>
+      <Name>TLC_Globe_LineDetail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Line\TLC_Globe_Line.csproj">
+      <Project>{03da05b7-8aca-4cdd-b059-383e2fb2866f}</Project>
+      <Name>TLC_Globe_Line</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_NormalSix\TLC_Globe_NormalSix.csproj">
+      <Project>{e677aca3-9014-466b-b05c-9c34d0e06b16}</Project>
+      <Name>TLC_Globe_NormalSix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Normal\TLC_Globe_Normal.csproj">
+      <Project>{3ca01c0c-c088-4903-90f6-d1c34e49d3e8}</Project>
+      <Name>TLC_Globe_Normal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_NotAll\TLC_Globe_NotAll.csproj">
+      <Project>{35ac5587-6ef8-4486-8e7b-9292ec79f6ca}</Project>
+      <Name>TLC_Globe_NotAll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_OneDetail\TLC_Globe_Detail.csproj">
+      <Project>{1a66d534-ca20-4fa6-94f1-2140211498fa}</Project>
+      <Name>TLC_Globe_Detail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_SpecialAnimal\TLC_Globe_SpecialAnimal.csproj">
+      <Project>{df191768-54ec-48e8-8d21-c2d09a080de0}</Project>
+      <Name>TLC_Globe_SpecialAnimal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_SpecialNormal\TLC_Globe_SpecialNormal.csproj">
+      <Project>{35e507d4-1bc1-414c-9f87-6f8219c11db8}</Project>
+      <Name>TLC_Globe_SpecialNormal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Special\TLC_Globe_Special.csproj">
+      <Project>{5dcffcb1-50ec-476e-a712-e4e29a77928b}</Project>
+      <Name>TLC_Globe_Special</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Wave\TLC_Globe_Wave.csproj">
+      <Project>{e7eb966e-ce5e-4dc0-8053-0ead3aa168cf}</Project>
+      <Name>TLC_Globe_Wave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Model\TLC_Model.csproj">
+      <Project>{09718053-7cbe-48a8-b5d1-c57ec8e1413b}</Project>
+      <Name>TLC_Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>14330</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:25951/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

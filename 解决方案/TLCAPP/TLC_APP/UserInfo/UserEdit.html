@@ -1,0 +1,102 @@
+﻿
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>新增代理</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <!--<link href="/css/animate.css" rel="stylesheet" />-->
+
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/Common/PageBar.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedAdminCheck.js"></script>
+    <script src="../js/My97DatePicker/WdatePicker.js"></script>
+    <script src="../js/webcenter/userinfo.js"></script>
+    <script src="../js/web/UserInfo/UserEdit.js"></script>
+
+    <style>
+        .number {
+            width: 55px;
+            height: 30px;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            margin: 0px 10px;
+            text-indent: 10px;
+            color: #009706;
+        }
+
+        .Save_and_submit input.Save_and_submit {
+            padding: 6px 20px;
+        }
+
+        .cancel input.cancel {
+            padding: 6px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="yy_dialog">
+        <div class="t_content">
+            <div class="yy_tab">
+                <div class="content">
+                    <div class="tc">
+                        <div class="t_message">
+                            <div class="message_con">
+                                <form>
+                                    <table class="m_top">
+                                        <tr>
+
+                                            <td class="mi"><span class="m">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span></td>
+                                            <td class="ku">
+                                                <input id="txt_user" type="text" class="hu" placeholder="请输入姓名" /><span class="wstar">*</span>
+                                            </td>
+                                            <td class="mi"><span class="m">登 录 名：</span></td>
+                                            <td class="ku">
+                                                <input style="background:#eae7e7" disabled="disabled" id="txt_name" type="text" class="hu" placeholder="请输入姓名" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!--<td class="mi"><span class="m">金 额：</span></td>
+                                            <td class="ku">
+                                                <input style="background:#eae7e7" disabled="disabled" id="txt_money" onkeydown="return OnlyNumLimit(event);" type="number" step="1" min="0" value="0" /><span class="wstar">*</span>
+                                            </td>-->
+                                            <td class="mi" style="padding-left: 15px;"><span class="m">有 效 期：</span></td>
+                                            <td class="ku">
+                                                <input id="txt_enabletime" type="text" class="Wdate hu" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mi"><span class="m">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</span></td>
+                                            <td class="ku" colspan="3">
+                                                <textarea id="txt_remark" name="te_remark" rows="4" style="width: 495px;" form="usrform" placeholder="请在此处输入文本..."></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="submit_btn">
+                            <span class="Save_and_submit">
+                                <input type="submit" value="确定" class="Save_and_submit" onclick="btn_EditUser();" />
+                            </span>
+                            <span class="cancel">
+                                <input type="submit" value="取消" class="cancel" onclick="javascript: parent.CloseIFrameWindow();" />
+                            </span>
+
+                            <span class="Save_and_submit">
+                                <input type="submit" value="重置密码" class="Save_and_submit" onclick="btn_ResetPassword();" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

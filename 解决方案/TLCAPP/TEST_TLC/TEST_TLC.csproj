@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4A6A2F66-2969-45E8-B292-F7C5EAF58D53}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TEST_TLC</RootNamespace>
+    <AssemblyName>TEST_TLC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TLC_BLL\TLC_BLL.csproj">
+      <Project>{eed7e622-a6b2-43f6-852a-0d4b47c4e74d}</Project>
+      <Name>TLC_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_DAL\TLC_DAL.csproj">
+      <Project>{4453a441-488d-4380-9b09-9bae683e7524}</Project>
+      <Name>TLC_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_CombineAnimal\TLC_Globe_CombineAnimal.csproj">
+      <Project>{6484c8e4-3c54-40ff-ba75-c9242a2c4ead}</Project>
+      <Name>TLC_Globe_CombineAnimal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_LineAnimal\TLC_Globe_LineAnimal.csproj">
+      <Project>{9b0f6042-0cc7-4389-9a27-96541c038092}</Project>
+      <Name>TLC_Globe_LineAnimal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_LineDetail\TLC_Globe_LineDetail.csproj">
+      <Project>{939ec110-fd5d-44b8-bf44-4f27c90c7514}</Project>
+      <Name>TLC_Globe_LineDetail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Line\TLC_Globe_Line.csproj">
+      <Project>{03da05b7-8aca-4cdd-b059-383e2fb2866f}</Project>
+      <Name>TLC_Globe_Line</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_NormalSix\TLC_Globe_NormalSix.csproj">
+      <Project>{e677aca3-9014-466b-b05c-9c34d0e06b16}</Project>
+      <Name>TLC_Globe_NormalSix</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Normal\TLC_Globe_Normal.csproj">
+      <Project>{3ca01c0c-c088-4903-90f6-d1c34e49d3e8}</Project>
+      <Name>TLC_Globe_Normal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_NotAll\TLC_Globe_NotAll.csproj">
+      <Project>{35ac5587-6ef8-4486-8e7b-9292ec79f6ca}</Project>
+      <Name>TLC_Globe_NotAll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_OneDetail\TLC_Globe_Detail.csproj">
+      <Project>{1a66d534-ca20-4fa6-94f1-2140211498fa}</Project>
+      <Name>TLC_Globe_Detail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_SpecialAnimal\TLC_Globe_SpecialAnimal.csproj">
+      <Project>{df191768-54ec-48e8-8d21-c2d09a080de0}</Project>
+      <Name>TLC_Globe_SpecialAnimal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_SpecialNormal\TLC_Globe_SpecialNormal.csproj">
+      <Project>{35e507d4-1bc1-414c-9f87-6f8219c11db8}</Project>
+      <Name>TLC_Globe_SpecialNormal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Special\TLC_Globe_Special.csproj">
+      <Project>{5dcffcb1-50ec-476e-a712-e4e29a77928b}</Project>
+      <Name>TLC_Globe_Special</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Globe_Wave\TLC_Globe_Wave.csproj">
+      <Project>{e7eb966e-ce5e-4dc0-8053-0ead3aa168cf}</Project>
+      <Name>TLC_Globe_Wave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Handler\TLC_Handler.csproj">
+      <Project>{e57da07d-0040-46d3-b744-85d887119d93}</Project>
+      <Name>TLC_Handler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLC_Model\TLC_Model.csproj">
+      <Project>{09718053-7cbe-48a8-b5d1-c57ec8e1413b}</Project>
+      <Name>TLC_Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

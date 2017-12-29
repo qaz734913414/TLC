@@ -1,0 +1,183 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>中奖信息管理</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <!--<link href="/css/animate.css" rel="stylesheet" />-->
+
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <script src="../js/web/ValedCheck.js"></script>
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/Common/PageBar.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+
+    <script src="../js/webcenter/operation.js"></script>
+    <script src="../js/webcenter/globe_client.js"></script>
+    <script src="../js/web/Client/SelfPrizeList.js"></script>
+
+
+    <style>
+        .Sear .hu {
+            height: 28px;
+            width: 100px;
+        }     
+    </style>
+</head>
+<body>
+    <form id="form1">
+        <div class="Teaching_plan_management">
+            <!--<%--<h1 class="Page_name">中奖信息管理</h1>--%>-->
+            <h1 class="Page_name">获奖记录</h1>
+            <div class="Operation_area">
+                <div class="left_choice fl">
+                    <ul>
+
+
+                        <li class="Sear" style="margin-top: 1px;">
+                            年号:
+                            <select id="select_year" class="hu"></select>
+                        </li>
+
+                        <li class="Sear" style="margin-top: 1px;">
+                            期号:
+                            <select id="select_section" class="hu"></select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="Honor_management">
+
+                <table class="W_form">
+                    <thead>
+                        <tr class="trth">
+                            <th class="number">序号</th>
+                            <th>用户名</th>
+                            <th>年号</th>
+                            <th>期号</th>
+                            <th width="15%">开奖球号</th>
+                            <th>买入类型</th>
+                            <th>种类</th>
+                            <th width="15%">下注内容</th>
+                            <th width="15%">赔率</th>
+                            <th>单注金额</th>
+                            <th>买入金额</th>
+                            <th>是否中奖</th>
+                            <th width="15%">中奖明细</th>
+                            <th>中奖金额</th>
+                            <!--<th>和局返额</th>-->
+                            <th>返水</th>
+                            <th width="5%">买入时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_PrizeList"></tbody>
+                </table>
+            </div>
+            <!--分页页码开始-->
+            <div class="paging">
+                <span id="pageBar"></span>
+            </div>
+            <!--分页页码结束-->
+        </div>
+        <div class="left_choice fr" id="control">
+            <ul>
+                <li class="Sear"  id="buy_M" style="margin: 6px 35px 0 0;">下注总金额：0</li>
+                <li class="Sear" id="get_M" style="margin: 6px 35px 0 0;">获奖总金额：0</li>
+                <!--<li class="Sear" id="araw_return_M" style="margin: 6px 35px 0 0;">和局返回总额：0</li>-->
+                <li class="Sear" id="return_M" style="margin: 6px 35px 0 0; ">返回奖金总额：0</li>
+            </ul>
+        </div>
+    </form>
+</body>
+</html>
+<script id="tr_Prize" type="text/x-jquery-tmpl">
+    <tr>
+        <td>${pageIndex()}</td>
+        <td>${user_Name}</td>
+        <td>${Year}</td>
+        <td>${award_Name}</td>
+        <td>
+            {{each GlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+        </td>
+        <td>${First_Name}</td>
+        <td>${Second_Name}</td>
+        <td>
+            {{if FirstIsGloble == true && IsWin != 3}}
+
+            {{each FirstGlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+
+            {{if BuyDisplay2 !=null && BuyDisplay2 !=''}}
+            、${BuyDisplay2}
+            {{else}}
+
+            {{/if}}
+
+
+            {{else}}
+            ${BuyDisplay} ${BuyDisplay2}
+            {{/if}}
+
+        </td>
+        {{if IsShowMin == true }}
+        <td>${MinPayReturn}</td>
+        {{else IsShowMin == false}}
+        <td>${BuyPayReturn}</td>
+        {{/if}}
+        <td>${UnitPrice}</td>
+        <td>${Using_Money}</td>
+        {{if IsWin ==0}}
+        <td style="color:green">中奖</td>
+        {{else IsWin ==1}}
+        <td>不中奖</td>
+        {{else IsWin ==2}}
+        <td>综合</td>
+        {{else IsWin ==3}}
+        <td>未开奖</td>
+        {{else}}
+        <td>${IsWin}</td>
+        {{/if}}
+
+        <td>${Araw_RetrunContent}</td>
+        <td>${Get_Money}</td>
+        <!--<td>${Araw_ReturnMoney}</td>-->
+        <td>${Return_Money}</td>
+        <td>${DateTimeConvert(Operation_Time)}</td>
+    </tr>
+</script>
+<script type="text/x-jquery-tmpl" id="yearItem">
+    <option year="${Year}">${Year}</option>
+</script>
+
+<script type="text/x-jquery-tmpl" id="sectionItem">
+    <option name="${Name}">${Name}</option>
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="NoListItem">
+    <td colspan="100" style="border-bottom:none;"><div style="width:100%;background:url(/images/nomessage.png) no-repeat center center;height:480px;background-size:15% auto;"></div></td>
+</script>

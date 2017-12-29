@@ -1,0 +1,120 @@
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>代理信息管理</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <!--<link href="/css/animate.css" rel="stylesheet" />-->
+
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/Common/PageBar.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedAdminCheck.js"></script>
+    <script src="../js/webcenter/userinfo.js"></script>
+    <script src="../js/web/UserInfo/Index.js"></script>
+
+    <style>
+        .titlenav_right span {
+            font-size: 14px;
+            color: #999999;
+            float: left;
+            /*vertical-align: middle;*/
+        }
+
+        .titlenav_right ul {
+            float: left;
+        }
+
+            .titlenav_right ul li {
+                padding-left: 5px;
+                color: #666666;
+                font-size: 14px;
+                float: left;
+                cursor: pointer;
+            }
+
+
+        .select_li {
+            background: blue;
+        }
+
+        .left_choice
+        {
+            /*margin-left:40%;*/
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="Teaching_plan_management">
+        <h1 class="Page_name">近期新增代理</h1>
+        <div class="Operation_area">
+            <div class="left_choice fl">
+                <ul>
+                    <li class="Sear">
+                        <input type="text" id="search_w" name="search_w" class="search_w" placeholder="请输入姓名" value="" /><a class="sea" href="#" onclick="SelectWhere();" style="margin-left: 10px;">搜索</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="Honor_management">
+            <table class="W_form">
+                <thead>
+                    <tr class="trth">
+                        <th class="number">序号</th>
+                        <th>登陆名</th>
+                        <th>姓名</th>
+                        <th>金额</th>
+                        <th>账户有效期</th>
+                        <th>启用状态</th>
+                        <th>创建时间</th>                      
+                    </tr>
+                </thead>
+                <tbody id="tb_UserList"></tbody>
+            </table>
+        </div>
+        <!--分页页码开始-->
+        <div class="paging">
+            <span id="pageBar"></span>
+        </div>
+        <!--分页页码结束-->
+
+        <div class="left_choice fr" id="control">
+            <ul>
+                <li class="Sear" id="Person_Add" style="margin: 6px 35px 0 0;">新增人数：0</li>
+                <li class="Sear" id="Money_Cash" style="margin: 6px 35px 0 0;">提现总额：0</li>
+                <li class="Sear" id="Money_Left" style="margin: 6px 35px 0 0;">余额：0</li>
+            </ul>
+        </div>
+    </div>
+   
+</body>
+</html>
+<script id="tr_User" type="text/x-jquery-tmpl">
+    <tr>
+        <td>${pageIndex()}</td>
+        <td>${LoginName}</td>
+        <td>${Name}</td>
+        <td>${Money.toFixed(2)}</td>
+        <td>${DateTimeConvert(EnableTime)}</td>
+        {{if IsEnable ==0}}
+        <td class="Status" style="color: green">启用</td>
+        {{else}}
+        <td class="DisableStatus" style="color: red">禁用</td>
+        {{/if}}
+        <td>${DateTimeConvert(CreateTime)}</td>      
+    </tr>
+</script>
+<script type="text/x-jquery-tmpl" id="NoListItem">
+    <td colspan="100" style="border-bottom:none;"><div style="width:100%;background:url(/images/nomessage.png) no-repeat center center;height:480px;background-size:15% auto;"></div></td>
+</script>

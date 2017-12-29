@@ -1,0 +1,195 @@
+﻿
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>赔率设置</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <!--<link href="/css/animate.css" rel="stylesheet" />-->
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <!--<link href="../css/lg/style.css" rel="stylesheet" />
+    <link href="../css/lg/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />-->
+
+
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedAdminCheck.js"></script>
+    <script src="../js/webcenter/globe.js"></script>
+    <script src="../js/web/PaySetting/PayList.js"></script>
+
+    <style>
+        .divcss5 {
+            border-style: ridge;
+            /*border-width: 1px;*/
+            border-color: green;
+            border-bottom-width: 0.5px;
+            /*border-top-width: 0.5px;*/
+            display: none;
+            height: 35px;           
+        }
+
+
+        .select_tools {
+            margin: 3px 0;
+        }
+
+            .select_tools a {
+                font-size: 16px;
+                color: #333;
+                padding: 6px 20px;
+                display: block;
+                float: left;
+                border: 1px solid #fff;
+                border-radius: 3px;
+                margin-right: 10px;
+            }
+
+                .select_tools a:hover {
+                    border: 1px solid #2789ba;
+                    color: #2789ba;
+                }
+
+                .select_tools a.selected {
+                    border: 1px solid #2789ba;
+                    color: #2789ba;
+                }
+    </style>
+</head>
+<body>
+    <div id="div_Top" class="select_tools fl clearfix" style="margin-top:15px">
+        <!--<a href="javascript:;" class="selected">话题</a>
+        <a href="javascript:;" class="">与我相关</a>
+        <a href="javascript:;" style="cursor: pointer" class="">零回复</a>-->
+    </div>
+    <div class="choseBallWrap scroll">
+        <table class="table table-bordered LotteryBall">
+
+            <tbody id="body1"></tbody>
+        </table>
+      
+
+        <div class="divcss5" id="div_search_1">
+            <div class="left_choice fr">
+                <ul>
+                    <li class="Sear">
+                        <span style="vertical-align:middle" class="m">返率：</span>
+                        <input id="txtReturnPay" onkeydown="return OnlyNumLimit(event);" style="width:70px;" type="number" step="1" min="0" value="0" />%
+
+                        <input style="width: 70px; margin-left: 20px;" onkeydown="return OnlyNumLimit(event);" type="number" step="1" id="search_1" name="search_w" min="0" value="${PayReturn}" /><a id="sea1" class="sea" style="margin-left: 10px;">设置所有</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered lotteryOdds">
+            <tbody id="body2"></tbody>
+        </table>
+        <div class="divcss5" id="div_search_2">
+            <div class="left_choice fr">
+                <ul>
+                    <li class="Sear">
+                        <span style="vertical-align:middle" class="m">返率：</span>
+                        <input id="txtReturnPay2" onkeydown="return OnlyNumLimit(event);" style="width:70px;" type="number" step="1" min="0" value="0" />%
+                        <input style="width: 70px; margin-left: 20px; " onkeydown="return OnlyNumLimit(event);" type="number" step="1" id="search_2" name="search_w" min="0" value="${PayReturn}" /><a id="sea2" class="sea" style="margin-left: 10px;">设置所有</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt10 mb10" style="vertical-align: middle; text-align: center">
+
+            <input id="submit" style="width: 150px" type="button" class="Topic_btn " value="提 交" />
+        </div>
+    </div>
+</body>
+
+
+</html>
+<!--<%--玩球--%>-->
+<script type="text/x-jquery-tmpl" id="globeItem">
+    <td class="textConter">
+        <a class="hrefclass">
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            <input style="width: 70px" onkeydown="return OnlyNumLimit(event);" type="number" step="1" min="0" value="${PayReturn}" />
+        </a>
+    </td>
+</script>
+<!--<%--玩码--%>-->
+<script type="text/x-jquery-tmpl" id="sizeItem">
+    <td class="chosenCenter textConter">
+        <a class="hrefclass">
+            <p class="col333">
+                ${Name}
+            </p>
+            <h6>
+                <input style="width: 70px; margin-left: 30px" onkeydown="return OnlyNumLimit(event);" type="number" step="1" min="0" value="${PayReturn}" />
+            </h6>
+        </a>
+    </td>
+</script>
+
+<script type="text/x-jquery-tmpl" id="waveItem">
+
+    <tr>
+        <td class="textConter">
+            <a href="#this">
+                <p class="col333">
+                    <span class="betNameSpan">${Name}</span>
+
+                    <input style="width: 70px" onkeydown="return OnlyNumLimit(event);" type="number" step="1" min="0" value="${PayReturn}" />
+
+                </p>
+            </a>
+        </td>
+        <td>
+            {{each GlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+        </td>
+    </tr>
+</script>
+
+<script type="text/x-jquery-tmpl" id="detailItem">
+    <td class="textConter">
+        <a href="#this">
+            <p class="col333">
+                ${Name}
+                <input style="width: 70px" onkeydown="return OnlyNumLimit(event);" type="number" step="1" min="0" value="${PayReturn}" />
+            </p>
+        </a>
+    </td>
+</script>
+
+<script type="text/x-jquery-tmpl" id="topItem">
+    <a href="javascript:;" code="${Code}">${Second_Name}</a>
+</script>
+
+
+<script>
+
+
+</script>
+
+

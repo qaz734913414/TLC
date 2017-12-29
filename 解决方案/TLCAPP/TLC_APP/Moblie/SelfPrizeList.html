@@ -1,0 +1,255 @@
+﻿﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,inital-scale=1.0,minimum-scale=0.5,maximum-scale=2.0,user-scalable=no">
+    <title>开奖记录</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <link href="../css/lg/style.css" rel="stylesheet" />
+    <link href="../css/lg/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <script src="../js/web/ValedCheck.js"></script>
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/Common/PageBar.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+
+    <script src="../js/webcenter/operation.js"></script>
+    <script src="../js/webcenter/globe_client.js"></script>
+    <script src="../js/web/Moblie/SelfPrizeList.js"></script>
+
+
+    <style>
+        .Sear .hu {
+            height: 28px;
+            width: 100px;
+        }
+
+        .left_choice ul li {
+            margin-right: 3px;
+        }
+
+        .Teaching_plan_management {
+            padding: initial;
+        }
+
+        .pTop {
+            position: fixed;
+            background: white;
+            width: 100%;
+            top: 35px;
+            height: 40px;
+        }
+
+        .awardContent {
+            position: fixed;
+            top: 75px;
+            background: white;
+            width: 100%;
+            height: 30px;
+            padding-left: 12px;
+            padding-top: 5px;
+        }
+
+        .Operation_area {
+            position: fixed;
+            top: 105px;
+            border-bottom: 1px solid #cecdcd;
+            padding-left: 12px;
+            background: white;
+            width: 100%;
+        }
+
+        .Honor_management {
+            margin-top: 150px;
+        }
+
+        table.W_form {
+            width: 100%;
+        }
+        .select_tools a {
+            font-size: 13px;
+            color: #333;
+            padding: 6px 5px;
+            display: block;
+            float: left;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            margin-right: 10px;
+            border: 0.3px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <div style=" position: fixed; top: 0px; width: 100%; background: white ;height: 35px; margin:0" class="select_tools fl c>
+        arfix" >
+        <a href="/Moblie/IndexClient.html" style="min-width: 0%; margin-bottom: 0px; "><img src="../images/return.png" style="height: 15px; vertical-align: middle;" /><span style="vertical-align: middle;">首页</span></a>
+    </div>
+    <form id="form1">
+
+        <div class="Teaching_plan_management">           
+            <div class="pTop">
+                <h1 class="Page_name" style="margin-top: 15px; margin-left: 10px;">下注记录</h1>
+            </div>
+
+            <div><div id="awardContent" class="awardContent" /></div>
+            <div class="Operation_area">
+                <div class="left_choice fl">
+                    <ul>
+                        <li class="Sear" style="margin-top: 1px;">
+                            年号:
+                            <select id="select_year" class="hu"></select>
+                        </li>
+
+                        <li class="Sear" style="margin-top: 1px;">
+                            期号:
+                            <select id="select_section" class="hu"></select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="Honor_management">
+
+                <table class="W_form">
+                    <thead>
+                        <tr class="trth">
+                            <th style="width:8px" class="number">序号</th>
+                            <th>类型</th>                           
+                            <th width="15%">内容</th>
+                            <th width="15%">赔率</th>
+                            <th>单注</th>
+                            <th>买入</th>
+                            <th>中奖</th>                                                                           
+                            <th>返水</th>
+                            <th width="5%">买入时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tb_PrizeList"></tbody>
+                </table>
+            </div>
+            <!--分页页码开始-->
+            <div class="paging">
+                <span id="pageBar"></span>
+            </div>
+            <!--分页页码结束-->
+
+            <div class="left_choice fr" id="control">
+                <ul>
+                    <li class="Sear" id="buy_M" style="margin: 0 15px 0 0;float:none">下注总金额：0</li>
+                    <li class="Sear" id="get_M" style="margin: 2px 15px 0 0; float: none">获奖总金额：0</li>
+                    <!--<li class="Sear" id="araw_return_M" style="margin: 2px 15px 0 0; float: none">和局返回总额：0</li>-->
+                    <li class="Sear" id="return_M" style="margin: 2px 15px 5px 0; float: none">返回奖金总额：0</li>
+                </ul>
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>
+<script id="tr_Prize" type="text/x-jquery-tmpl">
+    <tr>
+        <td >${pageIndex()}</td>
+        <td>${First_Name}(${Second_Name})</td>       
+        <td>
+            {{if FirstIsGloble == true && IsWin != 3}}
+
+            {{each FirstGlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+
+            {{if BuyDisplay2 !=null && BuyDisplay2 !=''}}
+            、${BuyDisplay2}
+            {{else}}
+
+            {{/if}}
+
+
+            {{else}}
+            ${BuyDisplay} ${BuyDisplay2}
+            {{/if}}
+
+        </td>
+        {{if IsShowMin == true }}
+        <td>${MinPayReturn}</td>
+        {{else IsShowMin == false}}
+        <td>${BuyPayReturn}</td>
+        {{/if}}
+        <td>${UnitPrice}</td>
+        <td>${Using_Money}</td>
+
+
+        {{if IsWin ==0}}
+        <td style="color:green">${Araw_RetrunContent}->金额(${Get_Money}) </td>
+          
+        {{else IsWin ==1}}
+        <td>不中奖</td>
+        {{else IsWin ==2}}
+        <td>综合</td>
+        {{else IsWin ==3}}
+        <td>未开奖</td>
+        {{else}}
+        <td>${IsWin}</td>
+        {{/if}}
+
+       
+      
+        <!--<td>${Araw_ReturnMoney}</td>-->
+        <td>${Return_Money}</td>
+        <td>${DateTimeConvert(Operation_Time)}</td>
+    </tr>
+</script>
+<script type="text/x-jquery-tmpl" id="yearItem">
+    <option year="${Year}">${Year}</option>
+</script>
+
+<script type="text/x-jquery-tmpl" id="sectionItem">
+    <option name="${Name}">${Name}</option>
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="NoListItem">
+    <td colspan="100" style="border-bottom:none;"><div style="width:100%;background:url(/images/nomessage.png) no-repeat center center;height:480px;background-size:35% auto;"></div></td>
+</script>
+
+<script type="text/x-jquery-tmpl" id="AwardItem">
+    <div>
+        <span>开奖球号：</span>
+        {{each GlobeList}}
+        {{if Color =='red'}}
+        <p class="ball-red">${Name}</p>
+        {{else Color =='blue' }}
+        <p class="ball-blue">${Name}</p>
+        {{else Color =='green'}}
+        <p class="ball-green">${Name}</p>
+        {{/if}}
+        {{/each}}
+    </div>
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="AwardNoItem">
+    <div style="margin-top:3px">
+        <span>
+            开奖球号：XXXXXXX
+        </span>
+    </div>
+</script>
+
+
+

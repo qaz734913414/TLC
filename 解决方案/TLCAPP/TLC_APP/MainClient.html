@@ -1,0 +1,240 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>透乐彩模拟器</title>
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/iconfont.css" />
+    <link type="text/css" rel="stylesheet" href="css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="css/sprite.css" />
+    <link rel="stylesheet" href="/js/layer/skin/layer.css" id="layui_layer_skinlayercss" />
+    <link href="css/Bet/style.css" rel="stylesheet" />
+    <link href="css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="css/Bet/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="js/Common/jquery-1.11.2.min.js"></script>
+    <script src="js/Common/jquery.tmpl.js"></script>
+    <script src="/js/layer/layer.js"></script>
+
+    <script src="js/Common.js"></script>
+    <script src="js/web/ValedCheck.js"></script>
+
+    <script src="js/webcenter/globe_client.js"></script>
+    <script src="js/web/Index/IndexClient.js"></script>
+    <script src="js/web/Index/indexload.js"></script>
+
+    <script>
+        if (!IsPC())
+        {
+            location.href = 'Moblie/IndexClient.html'
+        }
+    </script>
+    <style>
+        .next-result a {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .next-result {
+            color: white;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .fenpanspan {
+            color: red;
+        }
+
+        .lbl_section {
+            font-size: 16px;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .bottom-bet1 {
+            float: left;
+            vertical-align: central;
+            color: white;
+            margin-left: 30px;
+            margin-top: 3px;
+        }
+
+        .login {
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <input name="hid_LoginName" type="hidden" id="hid_LoginName" value="admin">
+    <div class="wrap">
+        <!--头部-->
+        <div class="top ms-dialogHidden">
+            <div class="topcon">
+                <div class="top_con">
+                    <div>
+                        <div class="next-result" id="awardCurrent">
+                            <span>
+                                期号
+                            </span>
+
+                            <a>XXX</a>
+                            已封盘
+                        </div>
+                        <div class="next-result" id="awardLast">
+                        </div>
+
+                        <div style="position:fixed;top:27px;left:30%;color:white">
+                            <h5 id="current_money" class="betConfirm-title">目前余额：0</h5>
+                        </div>
+                    </div>
+
+
+
+                    <div class="top_right fr" style="position:fixed;top:50px;right:20px">
+                        <!--photo email-->
+                        <div class="rightcontent fl">
+                            <div class="login fl" id="setting" style="position: relative; cursor: pointer;">
+                                <a href="#"><span id="sp_LoginName" name="sp_LoginName">游客</span><b class="jiantou" style="font-weight: bold; font-size: 12px;">▼</b></a>
+
+                            </div>
+                        </div>
+                        <script src="js/web/Index/indexlogin.js"></script>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--头部结束-->
+        <div class="clear"></div>
+        <div class="center">
+            <!--内容区域-->
+            <div class="box">
+                <!--左边-->
+                <div class="left" id="sliderbox" style="height: 578px;">
+                    <div class="menubox">
+                        <div class="aside" style="display: block;"></div>
+                        <!--菜单区域-->
+                        <div class="menu" id="menubox">
+                            <ul id="ul_leftmenu"></ul>
+                        </div>
+                        <!--end 菜单区域-->
+
+
+                    </div>
+                </div>
+                <!--右边-->
+                <div class="right" style="height: 578px;">
+                    <iframe id="iframbox" src="/Client/GlobePlay.html?Type=1" width="100%" frameborder="0" height="100%" style="height: 578px;"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+</body>
+</html>
+
+<script type="text/x-jquery-tmpl" id="awarLastItem">
+    <label class="lbl_section">${Year}${Name}期</label>
+
+    {{each GlobeList}}
+    {{if Color =='red'}}
+    <p class="ball-red">${Name}</p>
+    {{else Color =='blue' }}
+    <p class="ball-blue">${Name}</p>
+    {{else Color =='green'}}
+    <p class="ball-green">${Name}</p>
+    {{/if}}
+    {{/each}}
+
+
+</script>
+
+<script type="text/x-jquery-tmpl" id="awardCurrentItem">
+    <span>
+        当前期号:
+    </span>
+
+    <a>${Name}</a>
+    距离封盘:
+    <a><span id="ddspan">${Leave_Day}</span> 天 <span id="hhspan">${Leave_Hour}</span> 时 <span id="MMspan">${Leave_Minuite}</span> 分 <span id="ssspan">${Leave_Second}</span> 秒</a>
+</script>
+
+<script type="text/x-jquery-tmpl" id="settingItem">
+    <div class="login_none" style="position: absolute; top: 180%; right: 10px; width: 90px; border: 1px solid rgb(204, 204, 204); background: rgb(255, 255, 255); z-index: 999; height: 61px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px; display: none;">
+        <span id="sp_EditPwd" name="sp_EditPwd" onclick="javascript: OpenIFrameWindow('修改密码', '/UserInfo/EditPassword.html', '630px', '310px');" style="display: block; width: 100%; color: #666; height: 30px; border-bottom: 1px solid #ccc; cursor: pointer; line-height: 30px; text-align: center;">修改密码</span>
+        <a id="logout" style="line-height: 30px; text-align: center; display: block; width: 100%; height: 30px; color: #666;">退出</a>
+    </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="loginItem">
+    <div class="login_none" style="position: absolute; top: 180%; right: 10px; width: 90px; border: 1px solid rgb(204, 204, 204); background: rgb(255, 255, 255); z-index: 999; height: 31px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px; display: none;">
+        <a id="login" style="line-height: 30px; text-align: center; display: block; width: 100%; height: 30px; color: #666;">登录</a>
+    </div>
+</script>
+
+<script id="navicate_Item" type="text/x-jquery-tmpl">
+    <li class="">
+        <a class="menuclick" href="#"><i>+</i>下注</a><ul class="submenu animated flipInX" style="display: none;">
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=1">特码</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=2">正码</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=3">正码特</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=4">正码1-6</a></li>
+
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=5">连码</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=6">特码半波</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=7">一肖/尾数</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=8">特码生肖</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=9">合肖</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=10">连肖</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=11">尾数连</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=12">全不中</a></li>
+        </ul>
+    </li>
+</script>
+
+<script id="navicate_Item2" type="text/x-jquery-tmpl">
+
+    <li class="">
+        <a class="menuclick" href="#"><i>+</i>下注</a><ul class="submenu animated flipInX" style="display: none;">
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=1">特码</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=2">正码</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=3">正码特</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=4">正码1-6</a></li>
+
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=5">连码</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=6">特码半波</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=7">一肖/尾数</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=8">特码生肖</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=9">合肖</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=10">连肖</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=11">尾数连</a></li>
+            <li class=""><a href="javascript:void(0);" data-src="/Client/GlobePlay.html?Type=12">全不中</a></li>
+        </ul>
+    </li>
+
+    <li class="li_menu">
+        <a class="menuclick" href="#"><i>+</i>下注记录</a><ul class="submenu animated flipInX" style="display: none;">
+            <li class=""><a href="javascript:void(0);" data-src="/Client/SelfPrizeList.html?bc=11">下注记录</a></li>
+        </ul>
+    </li>
+
+    <li class="li_menu">
+        <a class="menuclick" href="#"><i>+</i>开奖记录</a><ul class="submenu animated flipInX" style="display: none;">
+            <li class=""><a href="javascript:void(0);" data-src="/Client/HistoryAwardList.html?t= + new Date().getTime()">开奖记录</a></li>
+        </ul>
+    </li>
+</script>
+
+<script>
+    //GetDateTimeNowCompleate = function (result,date) {
+    //    if(result)
+    //    {
+    //        confirm(DateTimeConvert(date, 'yyyy-MM-dd HH:mm:ss'));
+    //    }
+    //};
+    //GetDateTimeNow();
+</script>

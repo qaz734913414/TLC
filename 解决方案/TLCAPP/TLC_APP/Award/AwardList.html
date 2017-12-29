@@ -1,0 +1,232 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>开奖管理</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/common.css" rel="stylesheet" />
+    <link href="/css/iconfont.css" rel="stylesheet" />
+    <!--<!--<link href="/css/animate.css" rel="stylesheet" />-->-->
+    <link href="../css/Bet/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/Bet/indexBet.css" rel="stylesheet" />
+    <link href="../css/Bet/jquery.mmenu.all.css" rel="stylesheet" />
+    <link href="../css/Bet/style.css" rel="stylesheet" />
+    <link href="../css/lg/style.css" rel="stylesheet" />
+    <link href="../css/lg/reset.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <script src="../js/Common/jquery-1.11.2.min.js"></script>
+    <script src="../js/Common/jquery.tmpl.js"></script>
+    <script src="../js/Common/jquery-barcode.js"></script>
+    <script src="../js/Common/PageBar.js"></script>
+    <script src="../js/layer/layer.js"></script>
+    <script src="../js/Common.js"></script>
+    <script src="../js/web/ValedAdminCheck.js"></script>
+    <script src="../js/webcenter/award.js"></script>
+    <script src="../js/web/Award/AwardList.js"></script>
+    <script src="../js/webcenter/globe_client.js"></script>
+    <style>
+        .tdCurrent {
+            font-size: 14Px;
+            font-weight: bold;
+            
+        }
+
+        .btnLeft {
+            position: fixed;
+            right: 10px;
+            width: 140px;
+            top: 37px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="Teaching_plan_management">
+
+        <h1 class="Page_name">开奖管理</h1>
+        <div class="Operation_area">
+            <div class="left_choice fl">
+                <ul>
+                    <li class="Sear">
+                        <input type="text" id="search_w" name="search_w" class="search_w" placeholder="请输入期号" value="" /><a class="sea" href="#" onclick="SelectWhere();" style="margin-left: 10px;">搜索</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="right_add btnLeft">
+                <a class="add" href="javascript:void(0);" onclick="javascript: OpenIFrameWindow('录入奖项', 'AwardAdd.html', '650px', '400px');"><i class="iconfont">&#xe726;</i>录入奖项</a>
+            </div>
+        </div>
+
+        <div class="Honor_management">
+
+            <table class="W_form">
+                <thead>
+                    <tr class="trth">
+                        <th class="number">序号</th>
+                        <th>年号</th>
+                        <th>期号</th>
+                        <th>开始时间</th>
+                        <th>封盘时间</th>
+                        <th>开奖时间</th>
+                        <th>开奖球号</th>
+                        <th>状态</th>
+                        <th>是否派奖</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tb_AwardList"></tbody>
+            </table>
+        </div>
+        <!--分页页码开始-->
+        <div class="paging">
+            <span id="pageBar"></span>
+        </div>
+        <!--分页页码结束-->
+    </div>
+
+    <div class="Teaching_plan_management">
+        <div class="Honor_management" style="width: 97.2%; position: fixed; bottom: 100px">
+
+            <table class="W_form">
+                <!--<thead>
+                    <tr class="trth">
+                        <th>年号</th>
+                        <th>期号</th>
+                        <th>开始时间</th>
+                        <th>封盘时间</th>
+                        <th>开奖球号</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>-->
+                <tbody id="tb_AwardCurrentList"></tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<script type="text/x-jquery-tmpl" id="award_Item">
+    <tr>
+        {{if  State ==2}}
+        <td class="tdCurrent">${pageIndex()}</td>
+        <td class="tdCurrent">${Year}</td>
+        <td class="tdCurrent">${Name}</td>
+        <td class="tdCurrent">${DateTimeConvert(StartTime,'yyyy-MM-dd HH:mm:ss')}</td>
+        <td class="tdCurrent">${DateTimeConvert(CloseTime,'yyyy-MM-dd HH:mm:ss')}</td>
+
+        {{if IsCompleate ==1}}
+        <td class="tdCurrent">暂无</td>
+        {{else}}
+        <td class="tdCurrent">${DateTimeConvert(EndTime,'yyyy-MM-dd HH:mm:ss')}</td>
+        {{/if}}
+
+        {{else}}
+        <td>${pageIndex()}</td>
+        <td>${Year}</td>
+        <td>${Name}</td>
+        <td>${DateTimeConvert(StartTime,'yyyy-MM-dd HH:mm:ss')}</td>
+        <td>${DateTimeConvert(CloseTime,'yyyy-MM-dd HH:mm:ss')}</td>
+
+        {{if IsCompleate ==1}}
+        <td>暂无</td>
+        {{else}}
+        <td class="tdCurrent">${DateTimeConvert(EndTime,'yyyy-MM-dd HH:mm:ss')}</td>
+        {{/if}}
+
+        {{/if}}
+
+        {{if IsCompleate ==0}}
+        <td>
+            {{each GlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+        </td>
+        {{else}}
+        <td></td>
+        {{/if}}
+
+        {{if State ==1}}
+        <td>未开始</td>
+        {{else  State==3 }}
+        <td>已封盘</td>
+        {{else  State ==2}}
+        <td class="tdCurrent" style="color:green">进行中</td>
+        {{/if}}
+
+        {{if IsCompleate ==0}}
+        <td style="color:green">已派奖</td>
+        {{else}}
+        <td style="color:red">未派奖</td>
+        {{/if}}
+
+        {{if State ==1 }}
+        <td>
+            <input type="button" class="Topic_btn" value="编辑" onclick="javascript: OpenIFrameWindow('编辑', 'AwardEdit.html?itemid=${Id}', '650px', '400px');" />
+        </td>
+        {{else IsCompleate ==0 &&State==3}}
+        <td></td>
+        {{else IsCompleate ==1 &&State ==2}}
+        <td>
+            <input type="button" class="Topic_btn" value="编辑" onclick="javascript: OpenIFrameWindow('编辑', 'AwardEdit.html?itemid=${Id}', '650px', '400px');" />
+        </td>
+        {{else IsCompleate ==1 &&State==3}}
+        <td>
+            <input type="button" class="Topic_btn" value="派奖" onclick="javascript: OpenIFrameWindow('派奖', 'AwardPay.html?itemid=${Id}&Code=${Code}', '650px', '400px');" />
+        </td>
+        {{/if}}
+    </tr>
+</script>
+
+<script type="text/x-jquery-tmpl" id="awardCurrent_Item">
+    <tr>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;"><h1 class="Page_name">当期奖项</h1></td>
+
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">年号：${Year}</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">期号：${Name}</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">开始时间：${DateTimeConvert(StartTime,'yyyy-MM-dd HH:mm:ss')}</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">封盘时间：${DateTimeConvert(CloseTime,'yyyy-MM-dd HH:mm:ss')}</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">
+            开奖球号：
+            {{each GlobeList}}
+            {{if Color =='red'}}
+            <p class="ball-red">${Name}</p>
+            {{else Color =='blue' }}
+            <p class="ball-blue">${Name}</p>
+            {{else Color =='green'}}
+            <p class="ball-green">${Name}</p>
+            {{/if}}
+            {{/each}}
+        </td>
+    </tr>
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="awardCurrent_Item_No">
+    <tr>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;"><h1 class="Page_name">当期奖项</h1></td>
+
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">年号：XXXX</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">期号：XX</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">开始时间：XXXX</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">封盘时间：XXXX</td>
+        <td class="tdCurrent" style="border-right: 0 solid #eee;">
+            开奖球号：
+            XXXXXXXX
+        </td>
+    </tr>
+</script>
+
+
+<script type="text/x-jquery-tmpl" id="NoListItem">
+    <td colspan="100" style="border-bottom:none;"><div style="width:100%;background:url(/images/nomessage.png) no-repeat center center;height:480px;background-size:15% auto;"></div></td>
+</script>

@@ -1,0 +1,17 @@
+
+给所有表添加相同的字段【带分号结束】
+
+alter table [dbo].[Animal_Info] add CreateTime DATETIME not Null DEFAULT  getdate();
+alter table [dbo].[Animal_Info] add CreateUID VARCHAR(50) not Null DEFAULT  'admin';
+ALTER  TABLE  [dbo].[Animal_Info] ADD  EditTime  DATETIME ;
+ALTER  TABLE  [dbo].[Animal_Info] ADD   EditUID  VARCHAR(50);
+ALTER  TABLE  [dbo].[Animal_Info] ADD  IsDelete  tinyint not Null default 0 ;
+ALTER  TABLE  [dbo].[Animal_Info] ADD   IsEnable  tinyint not Null default 0;
+
+
+
+
+select * from globe;
+
+truncate table globe;
+truncate table [dbo].[Animal_Info]

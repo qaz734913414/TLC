@@ -1,0 +1,123 @@
+﻿
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width,inital-scale=1.0,minimum-scale=0.5,maximum-scale=2.0,user-scalable=no">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>开奖管理系统</title>
+    <link type="text/css" rel="stylesheet" href="css/layout.css" />
+    <link type="text/css" rel="stylesheet" href="css/reset.css" />
+    <script src="js/Common/jquery-1.11.2.min.js"></script>
+    <script src="js/layer/layer.js"></script>
+    <script src="js/Common/tab.js"></script>
+    <script src="js/Common.js"></script>
+    <script src="js/Common/jquery.cookie.js"></script>
+    <script src="js/webcenter/login.js"></script>
+    <script src="js/web/Login.js"></script>
+    <script>
+        //$(function () {
+        //    if (!IsPC()) {
+        //        parent.parent.parent.location.href = "../Moblie/Login.html";
+        //    }
+        //});
+    </script>
+    <style type="text/css">
+        .code {
+            /*background-image: url(w1.jpg);*/
+            font-family: Arial;
+            font-style: italic;
+            color: Red;
+            border: 0;
+            padding: 2px 3px;
+            letter-spacing: 3px;
+            font-weight: bolder;
+        }
+
+        .top_top_con H1 {
+            margin-left: 35%;
+        }
+
+        .main {
+            width: 100%;
+            /*height:100%;*/
+        }
+
+        .Login {
+            padding-top: 0;
+        }
+
+            .Login .login_con {
+                background: #fff;
+                border-radius: 3px;
+                box-shadow: 0px 0px 6px #999;
+                /*padding: 10px;
+                width: 300px;
+                height: 310px;*/
+                margin: auto;
+                padding: 20px;
+                /*margin-top: 30px;*/
+                position: fixed;
+                left: 12.5%;
+                top: 10%;
+                height: 70%;
+                width: 70%;
+            }
+
+        .wrap {
+            background: white;
+        }
+
+        .Login .login_con .con input.kuang1 {          
+            padding-left: 35px;
+        }
+    </style>
+</head>
+<body>
+    <!--- -->
+    <div class="wrap">
+        <!--<div class="top_top">
+            <div class="top_top_con">
+
+            </div>
+        </div>-->
+        <div class="Login main">
+            <div class="login_con">
+
+                <div class="form">
+                    <form method="get" action="">
+                        <a></a>
+                        <ul class="con" style="text-align: center; margin-top: 30px;">
+                            <li class="xian">
+                                <span class="icon">
+                                    <img style="left:110px" src="../images/people.png" />
+                                </span><input id="txt_loginName" type="text" class="kuang" placeholder="请输入用户名" value="" />
+                            </li>
+                            <li class="xian">
+                                <span class="icon">
+                                    <img style="left:110px" src="../images/password.png" />
+                                </span><input id="txt_passWord" type="password" class="kuang" placeholder="请输入密码" value="" />
+                            </li>
+                            <li class="yzm xian">
+                                <span class="icon">
+                                    <img style="left:110px" src="../images/yzm.png" />
+                                </span><input id="inpCode" onpaste="return false" type="text" style="width:175px" class="kuang1" placeholder="请输入验证码" /><span class="yzmtu">
+                                    <label id="checkCode" class="code" style="width: 50px;" />
+                                </span>
+                                <a href="#" onclick="createCode()">刷新</a>
+                            </li>
+                            <li>
+                                <span class="btn">
+                                    <input id="BtnLogin" type="button" class="btn_btn" value="登录" onclick="Login()" />
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
